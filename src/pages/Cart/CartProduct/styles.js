@@ -7,31 +7,39 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const Image = styled.Image`
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
+`;
+
+export const Info = styled.View`
+  flex-direction: column;
+  max-width: 100px;
 `;
 
 export const Name = styled.Text`
   color: black;
-  font-size: 18px;
+  font-size: 12px;
 `;
 
 export const Brand = styled.Text`
   color: darkgray;
-  font-size: 16px;
+  font-size: 10px;
   opacity: 0.8;
 `;
 
 export const Price = styled.Text`
   color: green;
-  font-size: 22px;
+  font-size: 16px;
 `;
 
-export const Quantity = styled.TextInput`
-  width: 40px;
+export const Quantity = styled.TextInput.attrs({
+  keyboardType: 'numeric',
+})`
+  width: 20px;
   border: 1px solid lightgray;
 `;
 

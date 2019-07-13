@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CartTypes } from '~/store/ducks/cart';
 import Header from '~/components/Header';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CartProduct from './CartProduct';
@@ -10,26 +12,27 @@ import {
   SubtotalWrapper,
   SubtotalText,
   SubtotalValue,
+  Aux,
 } from './styles';
 
 export default function Cart() {
-  const product = {
-    image: 'http://picsum.photos/100',
-    name: 'a',
-    brand: 'a',
-    price: 200,
-  };
+  const products = useSelector(state => state.cart.products);
+  const subtotal = useSelector(state => state.cart.subtotal);
 
   return (
     <Container>
       <Header title="Cart" />
       <Content>
         <CartItems>
-          <CartProduct product={product} />
+          {products.map(product => (
+            <Aux key={product.id}>
+              <CartProduct product={product} />
+            </Aux>
+          ))}
         </CartItems>
         <SubtotalWrapper>
           <SubtotalText>Subtotal</SubtotalText>
-          <SubtotalValue>R$ 1200</SubtotalValue>
+          <SubtotalValue>{`R$ ${subtotal}`}</SubtotalValue>
         </SubtotalWrapper>
       </Content>
     </Container>

@@ -6,6 +6,7 @@ export const Container = styled.ScrollView.attrs({
     padding: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    paddingBottom: 160,
   },
 })``;
 

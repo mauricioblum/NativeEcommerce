@@ -1,6 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
-import { useNavigationParam } from 'react-navigation-hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { CartTypes } from '~/store/ducks/cart';
+import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
 
 import {
   Container,
@@ -17,6 +18,19 @@ import {
 
 export default function ProductDetails() {
   const product = useNavigationParam('product');
+  const cart = useSelector(state => state.cart.products);
+  const dispatch = useDispatch();
+  const { navigate, goBack } = useNavigation();
+
+  function addProductToCart(item) {
+    console.tron.log(cart);
+    const newCart = [...cart];
+    newCart.push(item);
+    dispatch({ type: CartTypes.ADD_TO_CART, products: newCart });
+    goBack();
+    navigate('Cart');
+  }
+
   return (
     <Container>
       <Content>
@@ -25,7 +39,7 @@ export default function ProductDetails() {
           <Name>{product.name}</Name>
           <Brand>{product.brand}</Brand>
           <Price>{`R$ ${product.price}`}</Price>
-          <CartButton onClick={() => {}}>
+          <CartButton onPress={() => addProductToCart(product)}>
             <CartButtonText>Add to cart</CartButtonText>
           </CartButton>
         </Product>

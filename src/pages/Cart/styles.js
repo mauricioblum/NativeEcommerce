@@ -10,6 +10,8 @@ export const Content = styled.View`
   flex: 1;
 `;
 
+export const Aux = styled.View``;
+
 export const CartItems = styled.ScrollView`
   padding: 15px;
 `;
