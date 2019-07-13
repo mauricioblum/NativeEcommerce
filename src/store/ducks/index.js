@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
+import { reducer as categories } from './categories';
 
 const reducers = combineReducers({
-  // Remova essa linha depois de adicionar seus ducks
-  example: () => [],
+  categories,
 });
 
 export default reducers;
