@@ -35,7 +35,9 @@ export const reducer = createReducer(INITIAL_STATE, {
     }),
   [Types.CART_CHANGE_QUANTITY]: (state, { product, qty }) =>
     state.merge({
-      subtotal: state.subtotal,
+      subtotal: state.products
+        .map(p => (p.id === product.id && p.price * qty) || p.price)
+        .reduce((a, b) => a + b),
       loading: false,
     }),
 });
