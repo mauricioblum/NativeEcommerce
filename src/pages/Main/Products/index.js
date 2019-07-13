@@ -1,12 +1,26 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useNavigation } from 'react-navigation-hooks';
 
 import { Container, Product, Image, Brand, Name, Price } from './styles';
 
 export default function Products() {
+  const { navigate } = useNavigation();
+
   return (
     <Container>
-      <Product>
+      <Product
+        onPress={() =>
+          navigate('ProductDetails', {
+            product: {
+              image: 'https://picsum.photos/160/260',
+              name: 'Product Name',
+              brand: 'Adidas',
+              price: 400,
+            },
+          })
+        }
+      >
         <Image source={{ uri: 'https://picsum.photos/160/260' }} />
         <Name>Product Name</Name>
         <Brand>Adidas</Brand>

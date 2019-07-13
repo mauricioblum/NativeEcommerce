@@ -4,13 +4,13 @@ export const Container = styled.ScrollView.attrs({
   contentContainerStyle: {
     marginTop: 15,
     padding: 15,
-    flexDirection: "row",
-    flexWrap: 'wrap'
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 })``;
 
 export const Product = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.6
+  activeOpacity: 0.6,
 })`
   background-color: white;
   flex-direction: column;
