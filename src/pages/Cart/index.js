@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { CartTypes } from '~/store/ducks/cart';
+import { useSelector } from 'react-redux';
 import Header from '~/components/Header';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CartProduct from './CartProduct';

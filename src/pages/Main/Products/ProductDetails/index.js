@@ -26,9 +26,11 @@ export default function ProductDetails() {
     console.tron.log(cart);
     const newCart = [...cart];
     let newItem = item;
-    newItem.quantity = 1;
-    newCart.push(newItem);
-    dispatch({ type: CartTypes.ADD_TO_CART, products: newCart });
+    const isDuplicate = cart.find(p => p.id === item.id);
+    if (!isDuplicate) {
+      newCart.push(newItem);
+      dispatch({ type: CartTypes.ADD_TO_CART, products: newCart });
+    }
     goBack();
     navigate('Cart');
   }

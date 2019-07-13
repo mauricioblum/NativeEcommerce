@@ -27,10 +27,12 @@ export const reducer = createReducer(INITIAL_STATE, {
     }),
   [Types.REMOVE_FROM_CART]: (state, { removedProduct }) =>
     state.merge({
-      subtotal: state.subtotal - removedProduct.price,
       products: state.products.filter(
         product => product.id !== removedProduct.id,
       ),
+      subtotal:
+        state.products.map(p => p.price).reduce((a, b) => a + b) -
+        state.products.find(product => product.id === removedProduct.id).price,
       loading: false,
     }),
   [Types.CART_CHANGE_QUANTITY]: (state, { product, qty }) =>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartTypes } from '~/store/ducks/cart';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import NumericInput from 'react-native-numeric-input';
+
 import {
   Container,
   Info,
@@ -14,7 +16,7 @@ import {
 } from './styles';
 
 export default function CartProduct({ product }) {
-  const [qty, setQty] = useState('1');
+  const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -40,10 +42,18 @@ export default function CartProduct({ product }) {
         <Price>{`R$ ${product.price}`}</Price>
       </Info>
 
-      <Quantity
-        onChangeText={text => handleQuantity(product, text)}
+      <NumericInput
+        type="up-down"
         value={qty}
+        minValue={1}
+        maxValue={99}
+        valueType="integer"
+        step={1}
+        onChange={value => handleQuantity(product, value)}
+        totalHeight={35}
+        totalWidth={50}
       />
+
       <Remove onPress={() => removeFromCart(product)}>
         <Icon name="close" />
       </Remove>
