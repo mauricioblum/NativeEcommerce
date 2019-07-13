@@ -22,6 +22,15 @@ export default function CartProduct({ product }) {
     dispatch({ type: CartTypes.REMOVE_FROM_CART, removedProduct: p });
   }
 
+  function handleQuantity(p, amount) {
+    setQty(amount);
+    dispatch({
+      type: CartTypes.CART_CHANGE_QUANTITY,
+      product: p,
+      qty: parseFloat(amount),
+    });
+  }
+
   return (
     <Container>
       <Image source={{ uri: product.image }} />
@@ -31,7 +40,10 @@ export default function CartProduct({ product }) {
         <Price>{`R$ ${product.price}`}</Price>
       </Info>
 
-      <Quantity onChangeText={text => setQty(text)} value={qty} />
+      <Quantity
+        onChangeText={text => handleQuantity(product, text)}
+        value={qty}
+      />
       <Remove onPress={() => removeFromCart(product)}>
         <Icon name="close" />
       </Remove>

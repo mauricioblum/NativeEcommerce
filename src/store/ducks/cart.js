@@ -6,6 +6,7 @@ import Immutable from 'seamless-immutable';
 const { Types, Creators } = createActions({
   addToCart: ['products'],
   removeFromCart: ['removedProduct'],
+  cartChangeQuantity: ['product', 'qty'],
 });
 
 export const CartTypes = Types;
@@ -30,6 +31,11 @@ export const reducer = createReducer(INITIAL_STATE, {
       products: state.products.filter(
         product => product.id !== removedProduct.id,
       ),
+      loading: false,
+    }),
+  [Types.CART_CHANGE_QUANTITY]: (state, { product, qty }) =>
+    state.merge({
+      subtotal: state.subtotal,
       loading: false,
     }),
 });
